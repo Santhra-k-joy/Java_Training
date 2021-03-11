@@ -144,137 +144,21 @@ ResultSet rs = stmt.executeQuery(sql);)
 
 	@Override
 	public List<Product> getAll() throws DaoException {
-		String sql="select * from products";
-		try(Connection conn = DButil.createConnection();
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sql);)
-		{
-			int c=0;
-			while(rs.next())
-			{
-				 String name = rs.getString("name");
-				 String brand = rs.getString("brand");
-				 String category = rs.getString("category");
-				 String quantity = rs.getString("quantity_per_unit");
-				 String description = rs.getString("description");
-				 String picture = rs.getString("picture");
-				 double price = rs.getDouble("unit_price");
-				double discount = rs.getDouble("discount");
-				  System.out.println("Name: "+name+", Brand: "+brand+", Category: "+category+ ", Quantity: "+quantity + ", Description: "+ description + ", Picture: "+picture+", Price: "+price+", Discount:  "+discount);
-				  
-			}
-		}
-		catch(Exception e)
-		
-		{
-		System.out.println("error :"+e);	
-		}
-return null;
-	}	
-	
+		return null;
+	}
 
 	@Override
 	public List<Product> getByPriceRange(double min, double max) throws DaoException {
-
-		String sql = "select * from products where unit_price between ? and ? order by unit_price";
-		try(Connection conn = DButil.createConnection();
-				PreparedStatement stmt = conn.prepareStatement(sql);)
-			
-		{
-			stmt.setDouble(1,min);
-			stmt.setDouble(2,max);
-			try(ResultSet rs = stmt.executeQuery())
-			{while(rs.next())
-			{
-				 String name = rs.getString("name");
-				 String brand = rs.getString("brand");
-				 String category = rs.getString("category");
-				 String quantity = rs.getString("quantity_per_unit");
-				 String description = rs.getString("description");
-				 String picture = rs.getString("picture");
-				 double price = rs.getDouble("unit_price");
-				double discount = rs.getDouble("discount");
-				  System.out.println("Name: "+name+" Brand: "+brand+" Category: "+category+ " Quantity: "+quantity + " Description: "+ description + " Picture: "+picture+" Price: "+price+" discount:  "+discount);
-				  
-			}
-			}
-			
-			
-		}
-catch(Exception e)
-		
-		{
-		System.out.println("error :"+e);	
-		}
-	
 		return null;
 	}
 
 	@Override
 	public List<Product> getByBrand(String brand) throws DaoException {
-		String sql= String.format("SELECT * FROM Products WHERE LOWER(brand) = '%s';",brand.toLowerCase());
-		
-		try(Connection conn = DButil.createConnection();
-				Statement stmt = conn.createStatement();
-ResultSet rs = stmt.executeQuery(sql);)
-		{
-			int i=0;
-			while (rs.next()) {
-				 name = rs.getString("name");
-				 brand = rs.getString("brand");
-				category = rs.getString("category");
-				  quantity = rs.getString("quantity_per_unit");
-				  description = rs.getString("description");
-				  picture = rs.getString("picture");
-				 price = rs.getDouble("unit_price");
-				 discount = rs.getDouble("discount");
-				i++;
-				  System.out.println("Name: "+name+" Brand: "+brand+" Category: "+category+ " Quantity: "+quantity + " Description: "+ description + " Picture: "+picture+" Price: "+price+" discount:  "+discount);
-				}
-			if(i==0)
-			{
-				System.out.println("No product available of that brand!!");
-			}
-		}
-		catch(Exception e)
-		{
-			System.out.println("There was a error "+e);
-		}
-		
 		return null;
 	}
 
 	@Override
 	public List<Product> getByCategory(String category) throws DaoException {
-	String sql= String.format("SELECT * FROM Products WHERE LOWER(category) = '%s';",category.toLowerCase());
-		
-		try(Connection conn = DButil.createConnection();
-				Statement stmt = conn.createStatement();
-ResultSet rs = stmt.executeQuery(sql);)
-		{
-			int i=0;
-			while (rs.next()) {
-				 name = rs.getString("name");
-				 brand = rs.getString("brand");
-				category = rs.getString("category");
-				  quantity = rs.getString("quantity_per_unit");
-				  description = rs.getString("description");
-				  picture = rs.getString("picture");
-				 price = rs.getDouble("unit_price");
-				 discount = rs.getDouble("discount");
-				i++;
-				  System.out.println("Name: "+name+" Brand: "+brand+" Category: "+category+ " Quantity: "+quantity + " Description: "+ description + " Picture: "+picture+" Price: "+price+" discount:  "+discount);
-				}
-			if(i==0)
-			{
-				System.out.println("No product available of that Category!!");
-			}
-		}
-		catch(Exception e)
-		{
-			System.out.println("There was a error: "+e);
-		}
-		
 		return null;
 	}
 }

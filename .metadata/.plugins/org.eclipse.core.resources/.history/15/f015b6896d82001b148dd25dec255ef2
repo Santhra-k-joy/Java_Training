@@ -272,7 +272,7 @@ ResultSet rs = stmt.executeQuery(sql);)
 		}
 		catch(Exception e)
 		{
-			System.out.println("There was a error: "+e);
+			System.out.println("There was a error "+e);
 		}
 		
 		return null;

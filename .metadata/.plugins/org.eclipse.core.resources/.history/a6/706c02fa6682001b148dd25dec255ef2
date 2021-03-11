@@ -12,7 +12,6 @@ import com.epsilon.training.dao.ProductDao;
 import com.epsilon.training.entity.KeyboardUtil;
 import com.epsilon.training.entity.Product;
 
-import jdk.internal.org.jline.utils.Log;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -75,7 +74,7 @@ public class ProductManagement{
 				String maxi = KeyboardUtil.getString("Enter the Category name ");
 				
 				
-				 dao.getByCategory(maxi.replaceAll("\\s+"," ").trim());
+				 dao.getByCategory(maxi);
 			 }
 				catch(Exception ex) {
 					log.warn("There was an error while trying to retrieve products of that Category");
@@ -90,7 +89,7 @@ public class ProductManagement{
 			String maxi = KeyboardUtil.getString("Enter the Brand name ");
 			
 			
-			 dao.getByBrand(maxi.replaceAll("\\s+"," ").trim());  //makes double space single then trims space from beginning and end 
+			 dao.getByBrand(maxi);
 		 }
 			catch(Exception ex) {
 				log.warn("There was an error while trying to retrieve products of that brand");
@@ -101,14 +100,9 @@ public class ProductManagement{
 	private void getByPrice() {
 		
 				try {
+					double maxi = KeyboardUtil.getDouble("Enter the maximum rate ");
 					
 					double mini = KeyboardUtil.getDouble("Enter the minimum rate ");
-					double maxi = KeyboardUtil.getDouble("Enter the maximum rate ");
-					if(maxi<mini)
-					{
-						log.warn("Maximum value should be less than minimum");
-					}
-					else
 					 dao.getByPriceRange(mini,maxi);
 				 }
 					catch(Exception ex) {
@@ -148,7 +142,11 @@ public class ProductManagement{
 		
 	
 		 try {
-				
+				// create variables for all product fields
+				// accept value for each variable from the user
+			//	int id = KeyboardUtil.getInt("Enter id: ");
+//				JDBCProductDao  am =new JDBCProductDao();
+			 
 			 int id = KeyboardUtil.getInt("Enter id: ");
 				
 			Product p= dao.getProduct(id);
@@ -174,8 +172,10 @@ public class ProductManagement{
 				p.setUnitPrice(Double.parseDouble(checkNull(Double. toString(p.getUnitPrice()),unitPrice)));
 				p.setDiscount(Double.parseDouble(checkNull(Double. toString(p.getDiscount()),discount)));
 			
-			
-			
+				 // System.out.println("Name: "+p.getName()+" Brand: "+p.getBrand()+" Category: "+p.getCategory()+ " Quantity: "+p.getQuantityPerUnit() + " Description: "+ p.getDescription() + " Picture: "+p.getPicture()+" Price: "+p.getUnitPrice()+" discount:  "+p.getDiscount());
+				  
+				
+				  System.out.println("huu");
 				dao.updateProduct(p);
 				
 			}

@@ -75,7 +75,7 @@ public class ProductManagement{
 				String maxi = KeyboardUtil.getString("Enter the Category name ");
 				
 				
-				 dao.getByCategory(maxi.replaceAll("\\s+"," ").trim());
+				 dao.getByCategory(maxi);
 			 }
 				catch(Exception ex) {
 					log.warn("There was an error while trying to retrieve products of that Category");
